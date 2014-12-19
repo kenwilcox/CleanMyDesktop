@@ -13,6 +13,8 @@ namespace CleanMyDesktop
 {
   public partial class frmMain : Form
   {
+    private DataHandler _dh;
+
     public frmMain()
     {
       InitializeComponent();
@@ -20,16 +22,17 @@ namespace CleanMyDesktop
 
     private void frmMain_Load(object sender, EventArgs e)
     {
-      DataHandler dh = new DataHandler();
+      _dh = new DataHandler();
       
-      TimeSpan s = dh.Settings.IgnoreTime;
+      TimeSpan s = _dh.Settings.IgnoreTime;
       // Add a minute each time - test settings
       s = s.Add(new TimeSpan(0, 1, 0));
-      dh.Settings.IgnoreTime = s;
+      _dh.Settings.IgnoreTime = s;
 
       MessageBox.Show(s.ToString());
 
-      watcher.Path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+      watcher.Path = _dh.Settings.WatchPath;
+      watcher.EnableRaisingEvents = true;
     }
 
     private void watcher_Event(object sender, FileSystemEventArgs e)
@@ -40,6 +43,11 @@ namespace CleanMyDesktop
     private void watcher_Renamed(object sender, System.IO.RenamedEventArgs e)
     {
       lbFiles.Items.Add("Renamed: " + e.OldName + " to " + e.Name);
+    }
+
+    private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      _dh.Settings.WatchPath = "nothing"; 
     }
   }
 }

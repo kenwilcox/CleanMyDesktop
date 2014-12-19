@@ -35,7 +35,6 @@
       // 
       // watcher
       // 
-      this.watcher.EnableRaisingEvents = true;
       this.watcher.IncludeSubdirectories = true;
       this.watcher.SynchronizingObject = this;
       this.watcher.Changed += new System.IO.FileSystemEventHandler(this.watcher_Event);
@@ -62,6 +61,7 @@
       this.Controls.Add(this.lbFiles);
       this.Name = "frmMain";
       this.Text = "frmMain";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
       this.Load += new System.EventHandler(this.frmMain_Load);
       ((System.ComponentModel.ISupportInitialize)(this.watcher)).EndInit();
       this.ResumeLayout(false);

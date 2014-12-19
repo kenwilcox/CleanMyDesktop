@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Data;
 using System.Data.SQLite;
 
@@ -113,9 +114,27 @@ namespace CleanMyDesktop
             return new TimeSpan(0, 30, 0);
           }
         }
+        
         set
         {
           _set("ignoreTime", value.Ticks);
+        }
+      }
+
+      public String WatchPath
+      {
+        get
+        {
+          string ret = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+          object data = _get("watchPath", ret);
+          if (Directory.Exists(data.ToString()))
+            ret = data.ToString();
+          return ret;
+        }
+
+        set
+        {
+          _set("watchPath", value);
         }
       }
     }
