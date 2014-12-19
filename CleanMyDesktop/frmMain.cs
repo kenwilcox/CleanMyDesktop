@@ -19,8 +19,17 @@ namespace CleanMyDesktop
 
     private void frmMain_Load(object sender, EventArgs e)
     {
-      DataHandler dh = new DataHandler();
-      grid.DataSource = dh.GetInfoTable();
+      watcher.Path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+    }
+
+    private void watcher_Created(object sender, System.IO.FileSystemEventArgs e)
+    {
+      lbFiles.Items.Add("Created: " + e.Name);
+    }
+
+    private void watcher_Renamed(object sender, System.IO.RenamedEventArgs e)
+    {
+      lbFiles.Items.Add("Renamed: " + e.OldName + " to " + e.Name);
     }
   }
 }

@@ -28,38 +28,49 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.grid = new System.Windows.Forms.DataGridView();
-      ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
+      this.watcher = new System.IO.FileSystemWatcher();
+      this.lbFiles = new System.Windows.Forms.ListBox();
+      ((System.ComponentModel.ISupportInitialize)(this.watcher)).BeginInit();
       this.SuspendLayout();
       // 
-      // grid
+      // watcher
       // 
-      this.grid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this.watcher.EnableRaisingEvents = true;
+      this.watcher.IncludeSubdirectories = true;
+      this.watcher.SynchronizingObject = this;
+      this.watcher.Created += new System.IO.FileSystemEventHandler(this.watcher_Created);
+      this.watcher.Renamed += new System.IO.RenamedEventHandler(this.watcher_Renamed);
+      // 
+      // lbFiles
+      // 
+      this.lbFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.grid.Location = new System.Drawing.Point(12, 12);
-      this.grid.Name = "grid";
-      this.grid.Size = new System.Drawing.Size(260, 238);
-      this.grid.TabIndex = 0;
+      this.lbFiles.FormattingEnabled = true;
+      this.lbFiles.Location = new System.Drawing.Point(12, 12);
+      this.lbFiles.Name = "lbFiles";
+      this.lbFiles.Size = new System.Drawing.Size(260, 225);
+      this.lbFiles.TabIndex = 0;
       // 
       // frmMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(284, 262);
-      this.Controls.Add(this.grid);
+      this.Controls.Add(this.lbFiles);
       this.Name = "frmMain";
       this.Text = "frmMain";
       this.Load += new System.EventHandler(this.frmMain_Load);
-      ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.watcher)).EndInit();
       this.ResumeLayout(false);
 
     }
 
     #endregion
 
-    private System.Windows.Forms.DataGridView grid;
+    private System.IO.FileSystemWatcher watcher;
+    private System.Windows.Forms.ListBox lbFiles;
+
   }
 }
 
