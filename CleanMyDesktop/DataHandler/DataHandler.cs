@@ -13,6 +13,7 @@ namespace CleanMyDesktop
 
     public DataHandler()
     {
+      // TODO: Move to the %APPDATA% directory
       _con = new SQLiteConnection("Data Source=CleanMyDesktop.db; Version=3");
       _con.Open();
       SQLiteCommand cmd = _con.CreateCommand();
