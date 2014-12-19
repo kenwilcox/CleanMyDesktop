@@ -21,11 +21,12 @@ namespace CleanMyDesktop
     private void frmMain_Load(object sender, EventArgs e)
     {
       DataHandler dh = new DataHandler();
-      TimeSpan ts = new TimeSpan(0, 30, 0);
-      long time = ts.Ticks;
-      MessageBox.Show(time.ToString());
+      
+      TimeSpan s = dh.Settings.IgnoreTime;
+      // Add a minute each time - test settings
+      s = s.Add(new TimeSpan(0, 1, 0));
+      dh.Settings.IgnoreTime = s;
 
-      TimeSpan s = new TimeSpan(time);
       MessageBox.Show(s.ToString());
 
       watcher.Path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
