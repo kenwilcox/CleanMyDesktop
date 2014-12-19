@@ -59,7 +59,7 @@ namespace CleanMyDesktop
         cmd.CommandText = "create table _settings(key varchar(20), value varchar(50))";
         cmd.ExecuteNonQuery();
 
-        cmd.CommandText = "create unique index uniq_name on _info (key);";
+        cmd.CommandText = "create unique index uniq_name on _settings (key);";
         cmd.ExecuteNonQuery();
       }
 
