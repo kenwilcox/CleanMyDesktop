@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -22,9 +23,9 @@ namespace CleanMyDesktop
       watcher.Path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
     }
 
-    private void watcher_Created(object sender, System.IO.FileSystemEventArgs e)
+    private void watcher_Event(object sender, FileSystemEventArgs e)
     {
-      lbFiles.Items.Add("Created: " + e.Name);
+      lbFiles.Items.Add(e.ChangeType.ToString() + ": " + e.Name);
     }
 
     private void watcher_Renamed(object sender, System.IO.RenamedEventArgs e)

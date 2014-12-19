@@ -38,7 +38,9 @@
       this.watcher.EnableRaisingEvents = true;
       this.watcher.IncludeSubdirectories = true;
       this.watcher.SynchronizingObject = this;
-      this.watcher.Created += new System.IO.FileSystemEventHandler(this.watcher_Created);
+      this.watcher.Changed += new System.IO.FileSystemEventHandler(this.watcher_Event);
+      this.watcher.Created += new System.IO.FileSystemEventHandler(this.watcher_Event);
+      this.watcher.Deleted += new System.IO.FileSystemEventHandler(this.watcher_Event);
       this.watcher.Renamed += new System.IO.RenamedEventHandler(this.watcher_Renamed);
       // 
       // lbFiles
