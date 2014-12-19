@@ -47,8 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataHandler.cs" />
-    <Compile Include="DataHandler.AppSettings.cs" />
+    <Compile Include="DataHandler\DataHandler.AppSettings.cs" />
+    <Compile Include="DataHandler\DataHandler.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
