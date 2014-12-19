@@ -20,6 +20,13 @@ namespace CleanMyDesktop
       InitializeComponent();
     }
 
+    private void HandleExistingFiles()
+    {
+      // Get a list of files
+      // Check the file age
+      // If it's old - take care of it
+    }
+
     private void frmMain_Load(object sender, EventArgs e)
     {
       _dh = new DataHandler();
@@ -30,6 +37,8 @@ namespace CleanMyDesktop
       _dh.Settings.IgnoreTime = s;
 
       MessageBox.Show(s.ToString());
+
+      HandleExistingFiles();
 
       watcher.Path = _dh.Settings.WatchPath;
       watcher.EnableRaisingEvents = true;
@@ -47,6 +56,7 @@ namespace CleanMyDesktop
 
     private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
     {
+      // Check to make sure we won't crash
       _dh.Settings.WatchPath = "nothing"; 
     }
   }
