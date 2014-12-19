@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataHandler.cs" />
+    <Compile Include="DataHandler.AppSettings.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>

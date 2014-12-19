@@ -7,7 +7,7 @@ using System.Data.SQLite;
 
 namespace CleanMyDesktop
 {
-  internal class DataHandler
+  internal partial class DataHandler
   {
     private SQLiteConnection _con;
 
